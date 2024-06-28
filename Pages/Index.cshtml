@@ -1,0 +1,71 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Лабораторная #1";
+}
+
+
+<div align="center">
+    <h2 class="display-4 mb-4">
+        Список сотрудников
+    </h2>
+    <a class="btn btn-info mb-3" asp-page="/Create">Добавить сотрудника</a>
+    @if (Model.Employees.Count == 0)
+    {
+        <h4>Список пуст</h4>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Инициалы</th>
+                <th>Должность</th>
+                <th>Оклад</th>
+                <th>Уволен</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var employee in Model.Employees)
+            {
+                <tr>
+                    <td>
+                        @employee.Fullname
+                    </td>
+                    <td>
+                        @employee.Job
+                    </td>
+                    <td>
+                        @employee.Salary
+                    </td>
+                    <td>
+                        @if (employee.Fired)
+                        {
+                            <div>Да</div>
+                        }
+                        else
+                        {
+                            <div>Нет</div>
+                        }
+                    </td>
+                    <td>
+                        <form method="post" asp-page-handler="delete">
+                            <input type="hidden" name="id" value="@employee.Id"/>
+                            <button type="submit" style="background-color: white; border-width: 0">
+                                Удалить
+                            </button>
+                        </form>
+                    </td>
+                    <td>
+                        <a asp-page="Edit" asp-route-id="@employee.Id">
+                            Редактирование
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+</div>

@@ -1,0 +1,35 @@
+@page "/Edit/{id}"
+@model Lab1.Pages.EditModel
+@{
+    ViewData["Title"] = "Редактирование студента";
+}
+
+<div align="center">
+    <h2 class="display-4 text-center mb-5">
+        Редактирование сведений о сотруднике
+    </h2>
+    <form class="col-4 card p-3" align="left" method="post" asp-page-handler="add">
+        <input type="hidden" asp-for="Id"/>
+        <div class="form-group mb-3">
+            <label>Инициалы сотрудника</label>
+            <input class="form-control" type="text" required asp-for="FullName" placeholder="Введите инициалы">
+        </div>
+        <div class="form-group mb-3">
+            <label>Должность</label>
+            <input class="form-control" type="text" required asp-for="Job" placeholder="Введите должность">
+        </div>
+        <div class="form-group mb-3">
+            <label>Заработная плата</label>
+            <input class="form-control" type="number" required asp-for="Salary" placeholder="Введите зп">
+        </div>
+        <div class="form-check mb-3">
+            <input class="form-check-input" asp-for="Fired" type="checkbox">
+            <label class="form-check-label">
+                Уволен
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">
+            Сохранить
+        </button>
+    </form>
+</div>
