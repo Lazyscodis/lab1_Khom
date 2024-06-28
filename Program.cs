@@ -3,11 +3,11 @@ using Lab1.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
-builder.Services.AddSingleton<EmployeeRepository>();
+builder.Services.AddSingleton<Home_Repair>();
 
 var app = builder.Build();
 
-var employeeRepository = app.Services.GetRequiredService<EmployeeRepository>();
+var employeeRepository = app.Services.GetRequiredService<Home_Repair>();
 employeeRepository.Init();
 
 if (!app.Environment.IsDevelopment())

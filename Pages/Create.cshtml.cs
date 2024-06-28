@@ -6,27 +6,28 @@ namespace Lab1.Pages;
 
 public class CreateModel : PageModel
 {
-    private readonly EmployeeRepository employeeRepository;
+    private readonly Home_Repair _homeRepair;
 
-    [BindProperty] public string FullName { get; set; }
+    [BindProperty] public string Description { get; set; }
+    [BindProperty] public string Location { get; set; }
+    [BindProperty] public bool IsCompleted { get; set; }
 
-    [BindProperty] public string Job { get; set; }
+    public CreateModel(Home_Repair homeRepair) => _homeRepair = homeRepair;
 
-
-    [BindProperty] public decimal Salary { get; set; }
-
-    public CreateModel(EmployeeRepository employeeRepository) => this.employeeRepository = employeeRepository;
-    
     public IActionResult OnPostAdd()
     {
-        var employee = new Employee
+        if (!ModelState.IsValid)
         {
-            Fullname = FullName,
-            Job = Job,
-            Fired = false,
-            Salary = Salary
+            return Page();
+        }
+
+        var task = new HomeRep
+        {
+            Fullname = Description,
+            Job = Location,
+            Fired = IsCompleted
         };
-        employeeRepository.Add(employee);
+        _homeRepair.Add(task);
         return RedirectToPage("/Index");
     }
 }

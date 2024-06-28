@@ -30,3 +30,4 @@ C:\Users\danii\Desktop\morozov_lab\Lab1\obj\Debug\net8.0\refint\Lab1.dll
 C:\Users\danii\Desktop\morozov_lab\Lab1\obj\Debug\net8.0\Lab1.pdb
 C:\Users\danii\Desktop\morozov_lab\Lab1\obj\Debug\net8.0\Lab1.genruntimeconfig.cache
 C:\Users\danii\Desktop\morozov_lab\Lab1\obj\Debug\net8.0\ref\Lab1.dll
+C:\Users\danii\Desktop\morozov_lab\Lab1\obj\Debug\net8.0\Lab1.sourcelink.json

@@ -1,16 +1,15 @@
 ﻿@page
-@model IndexModel
+@model Lab1.Pages.IndexModel
 @{
-    ViewData["Title"] = "Лабораторная #1";
+    ViewData["Title"] = "Список задач для домашнего ремонта";
 }
-
 
 <div align="center">
     <h2 class="display-4 mb-4">
-        Список сотрудников
+        Список задач для домашнего ремонта
     </h2>
-    <a class="btn btn-info mb-3" asp-page="/Create">Добавить сотрудника</a>
-    @if (Model.Employees.Count == 0)
+    <a class="btn btn-info mb-3" asp-page="/Create">Добавить задачу</a>
+    @if (Model.Repair == null || Model.Repair.Count == 0)
     {
         <h4>Список пуст</h4>
     }
@@ -19,47 +18,43 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Инициалы</th>
-                <th>Должность</th>
-                <th>Оклад</th>
-                <th>Уволен</th>
+                <th>Описание задачи</th>
+                <th>Место в доме</th>
+                <th>Статус выполнения</th>
                 <th></th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
-            @foreach (var employee in Model.Employees)
+            @foreach (var task in Model.Repair)
             {
                 <tr>
                     <td>
-                        @employee.Fullname
+                        @task.Fullname
                     </td>
                     <td>
-                        @employee.Job
+                        @task.Job
                     </td>
                     <td>
-                        @employee.Salary
-                    </td>
-                    <td>
-                        @if (employee.Fired)
+                        @if (task.Fired)
                         {
-                            <div>Да</div>
+                            <div>Выполнено</div>
                         }
                         else
                         {
-                            <div>Нет</div>
+                            <div>Не выполнено</div>
                         }
                     </td>
                     <td>
                         <form method="post" asp-page-handler="delete">
-                            <input type="hidden" name="id" value="@employee.Id"/>
+                            <input type="hidden" name="id" value="@task.Id"/>
                             <button type="submit" style="background-color: white; border-width: 0">
                                 Удалить
                             </button>
                         </form>
                     </td>
                     <td>
-                        <a asp-page="Edit" asp-route-id="@employee.Id">
+                        <a asp-page="Edit" asp-route-id="@task.Id">
                             Редактирование
                         </a>
                     </td>

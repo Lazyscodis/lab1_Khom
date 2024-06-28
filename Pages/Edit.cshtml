@@ -1,31 +1,27 @@
 @page "/Edit/{id}"
 @model Lab1.Pages.EditModel
 @{
-    ViewData["Title"] = "Редактирование студента";
+    ViewData["Title"] = "Редактирование задачи для домашнего ремонта";
 }
 
 <div align="center">
     <h2 class="display-4 text-center mb-5">
-        Редактирование сведений о сотруднике
+        Редактирование задачи для домашнего ремонта
     </h2>
-    <form class="col-4 card p-3" align="left" method="post" asp-page-handler="add">
+    <form class="col-4 card p-3" align="left" method="post">
         <input type="hidden" asp-for="Id"/>
         <div class="form-group mb-3">
-            <label>Инициалы сотрудника</label>
-            <input class="form-control" type="text" required asp-for="FullName" placeholder="Введите инициалы">
+            <label>Описание задачи</label>
+            <input class="form-control" type="text" required asp-for="Description" placeholder="Введите описание задачи">
         </div>
         <div class="form-group mb-3">
-            <label>Должность</label>
-            <input class="form-control" type="text" required asp-for="Job" placeholder="Введите должность">
-        </div>
-        <div class="form-group mb-3">
-            <label>Заработная плата</label>
-            <input class="form-control" type="number" required asp-for="Salary" placeholder="Введите зп">
+            <label>Место в доме</label>
+            <input class="form-control" type="text" required asp-for="Location" placeholder="Введите место в доме">
         </div>
         <div class="form-check mb-3">
-            <input class="form-check-input" asp-for="Fired" type="checkbox">
+            <input class="form-check-input" asp-for="IsCompleted" type="checkbox">
             <label class="form-check-label">
-                Уволен
+                Выполнено
             </label>
         </div>
         <button type="submit" class="btn btn-primary">

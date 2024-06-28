@@ -3,7 +3,7 @@
 /// <summary>
 /// Простой POCO класс представляющий строку данных
 /// </summary>
-public class Employee
+public class HomeRep
 {
     /// <summary>
     /// Идентификатор

@@ -2,26 +2,27 @@ using Lab1.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Lab1.Pages;
-
-public class IndexModel : PageModel
+namespace Lab1.Pages
 {
-    private EmployeeRepository employeeRepository;
-    public IList<Employee> Employees;
+    public class IndexModel : PageModel
+    {
+        private readonly Home_Repair _homeRepair;
+        public IList<HomeRep> Repair { get; private set; }
 
-    public IndexModel(EmployeeRepository employeeRepository)
-    {
-        this.employeeRepository = employeeRepository;
-    }
+        public IndexModel(Home_Repair homeRepair)
+        {
+            _homeRepair = homeRepair;
+        }
 
-    public void OnGet()
-    {
-        Employees = employeeRepository.List();
-    }
-    
-    public IActionResult OnPostDelete(Guid id)
-    {
-        employeeRepository.Remove(id);
-        return RedirectToPage();
+        public void OnGet()
+        {
+            Repair = _homeRepair.List();
+        }
+        
+        public IActionResult OnPostDelete(Guid id)
+        {
+            _homeRepair.Remove(id);
+            return RedirectToPage();
+        }
     }
 }

@@ -6,48 +6,46 @@ namespace Lab1.Pages
 {
     public class EditModel : PageModel
     {
-        private readonly EmployeeRepository employeeRepository;
+        private readonly Home_Repair _homeRepair;
 
         [BindProperty] public Guid Id { get; set; }
+        [BindProperty] public string Description { get; set; }
+        [BindProperty] public string Location { get; set; }
+        [BindProperty] public bool IsCompleted { get; set; }
 
-        [BindProperty] public string FullName { get; set; }
-
-        [BindProperty] public string Job { get; set; }
-
-        [BindProperty] public bool Fired { get; set; }
-
-        [BindProperty] public decimal Salary { get; set; }
-
-        public EditModel(EmployeeRepository employeeRepository)
+        public EditModel(Home_Repair homeRepair)
         {
-            this.employeeRepository = employeeRepository;
+            _homeRepair = homeRepair;
         }
 
         public IActionResult OnGet(Guid id)
         {
-            var employee = employeeRepository.GetById(id);
-            if (employee == null) return RedirectToPage("/Index");
+            var task = _homeRepair.GetById(id);
+            if (task == null) return RedirectToPage("/Index");
 
             Id = id;
-            FullName = employee.Fullname;
-            Job = employee.Job;
-            Fired = employee.Fired;
-            Salary = employee.Salary;
+            Description = task.Fullname;
+            Location = task.Job;
+            IsCompleted = task.Fired;
             
             return Page();
         }
 
         public IActionResult OnPost()
         {
-            var update = new Employee
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            var update = new HomeRep
             {
                 Id = Id,
-                Fullname = FullName,
-                Job = Job,
-                Fired = Fired,
-                Salary = Salary
+                Fullname = Description,
+                Job = Location,
+                Fired = IsCompleted
             };
-            employeeRepository.Update(update);
+            _homeRepair.Update(update);
             return RedirectToPage("/Index");
         }
     }
